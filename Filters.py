@@ -57,14 +57,15 @@ if option != 'None':
         output_img = blur_image(output_img)
         output_img = outline_effect(output_img)
     elif option == 'Pencil Sketch':
+        output_img = blur_image(output_img)
         output_img = pencil_sketch(output_img)
     elif option == 'Stylization Effect':
+        output_img = blur_image(output_img)
         output_img = stylization_effect(output_img)
 
 input_col, output_col = st.columns(2)
 with input_col:
     st.header('Original')
-    # Display uploaded image.
     st.image(img, channels='BGR', use_column_width=True)
 with output_col:
     st.header('Output')
