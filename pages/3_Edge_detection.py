@@ -65,9 +65,20 @@ def main():
                 st.image(output_img_dy)
 
         elif edge_option == 'Canny':
-            kernel_size = st.slider('Kernel size', 3, 7, 3, 2)
-            threshold_1 = st.slider('Threshold 1', 0, 255, 100, 1)
-            threshold_2 = st.slider('Threshold 2', 0, 255, 200, 1)
+            min_kernel_size = 3
+            max_kernel_size = 7
+            step_kernel_size = 2
+            initial_kernel_size = min_kernel_size
+            kernel_size = st.slider(
+                'Kernel size',
+                min_kernel_size,
+                max_kernel_size,
+                initial_kernel_size,
+                step_kernel_size
+            )
+            threshold = 10.0**int((kernel_size - min_kernel_size) / step_kernel_size + min_kernel_size)
+            threshold_1 = st.slider('Threshold 1', 0.0, threshold, 100.0, 1.0)
+            threshold_2 = st.slider('Threshold 2', 0.0, threshold, 200.0, 1.0)
             L2gradient = st.toggle('L2 gradient', value=False)
             output_img = cv2.Canny(
                 output_img, threshold_1, threshold_2,
