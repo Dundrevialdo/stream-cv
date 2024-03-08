@@ -6,14 +6,15 @@ from src.links import Link
 def main():
     st.title('Edge detection')
 
-    Link.show('blur')
-    Link.show('gaussian_blur')
-
     uploaded_file = st.file_uploader("Select image", type=['png', 'jpg', 'jpeg'])
     if uploaded_file:
         img = load_image(uploaded_file, cv2.IMREAD_GRAYSCALE)
         output_img = img.copy()
         st.header('Set bluring')
+
+        Link.show('blur')
+        Link.show('gaussian_blur')
+
         blur_option = st.radio('', ['No blur', 'Box blur', 'Gaussian blur'])
 
         if blur_option != 'No blur':
@@ -40,19 +41,27 @@ def main():
             if edge_option == 'Sobel':
                 kernel_size = st.slider('Kernel size', -1, 7, 3, 2)
                 if kernel_size == -1:
-                    dxy_mapping = {'dx': (1, 0), 'dy': (0, 1)}
-                    dxy_option = st.radio('', ['dx', 'dy'], horizontal=True)
-                    dx, dy = dxy_mapping.get(dxy_option)
+                    dx, dy = (1, 1)
                 elif kernel_size == 1:
-                    dx = st.slider('dx', 0, 2, 1, 1)
-                    dy = st.slider('dy', 0, 2, 0, 1)
+                    dx = st.slider('dx', 1, 2, 1, 1)
+                    dy = st.slider('dy', 1, 2, 1, 1)
                 else:
-                    dx = st.slider('dx', 0, kernel_size-1, 1, 1)
-                    dy = st.slider('dy', 0, kernel_size-1, 1, 1)
-                if dx == 0 and dy == 0:
-                    st.error('dx and dy cannot be 0 at the same time')
-                    st.stop()
-                output_img = cv2.Sobel(output_img, -1, dx, dy, ksize=kernel_size)
+                    dx = st.slider('dx', 1, kernel_size-1, 1, 1)
+                    dy = st.slider('dy', 1, kernel_size-1, 1, 1)
+                output_img_dx = cv2.Sobel(output_img, -1, dx, 0, ksize=kernel_size)
+                output_img_dy = cv2.Sobel(output_img, -1, 0, dy, ksize=kernel_size)
+                output_img = np.maximum(output_img_dx, output_img_dy)
+
+                col1, col2 = st.columns(2)
+
+                with col1:
+                    st.header('Sobel dx')
+                    st.image(output_img_dx)
+
+                with col2:
+                    st.header('Sobel dy')
+                    st.image(output_img_dy)
+
             elif edge_option == 'Canny':
                 kernel_size = st.slider('Kernel size', 3, 7, 3, 2)
                 threshold_1 = st.slider('Threshold 1', 0, 255, 100, 1)
