@@ -7,6 +7,8 @@ import streamlit as st
 from PIL import Image
 import matplotlib.pyplot as plt
 
+from src.filters import bw_filter
+
 
 def get_image_info(image: Image):
     info = {
@@ -65,3 +67,10 @@ def plot(img1, img2):
     plt.title("Filtered Image")
 
     plt.show()
+
+
+def convert_to_grayscale(img):
+    do_convert = st.toggle('Convert to grayscale', value=False)
+    if do_convert:
+        img = bw_filter(img)
+    return img

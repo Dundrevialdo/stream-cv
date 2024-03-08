@@ -11,8 +11,7 @@ def brightness_and_contrast(img):
 
 @st.cache_data
 def bw_filter(img):
-    img_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-    return img_gray
+    return cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
 
 @st.cache_data

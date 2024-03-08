@@ -1,5 +1,6 @@
 from src.filters import *
 from src.common import *
+from src.blurring import blur_image
 
 st.title('Artistic Image Filters')
 
@@ -52,6 +53,8 @@ if option != 'None':
     elif option == '3D Embossed Effect':
         output_img = embossed_edges(output_img)
     elif option == 'Outline Effect':
+        output_img = convert_to_grayscale(output_img)
+        output_img = blur_image(output_img)
         output_img = outline_effect(output_img)
     elif option == 'Pencil Sketch':
         output_img = pencil_sketch(output_img)
