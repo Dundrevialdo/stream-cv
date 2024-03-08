@@ -8,9 +8,9 @@ pytest-mock==3.12.*
 matplotlib==3.8.*
 
 # OpenCV
-opencv-contrib-python==4.9.*
+# opencv-contrib-python==4.9.*
+opencv-python-headless  # Streamlit requirement in place of opencv-contrib-python
 # cmake
 # scipy
-# matplotlib
 # scikit-learn
 # ipython
