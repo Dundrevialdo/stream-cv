@@ -1,0 +1,16 @@
+streamlit
+Pillow==10.2
+notebook==7.1
+pandas==2.2
+numpy==1.26
+pytest==8.0
+pytest-mock==3.12
+matplotlib
+
+# OpenCV
+opencv-contrib-python
+# cmake
+# scipy
+# matplotlib
+# scikit-learn
+# ipython
