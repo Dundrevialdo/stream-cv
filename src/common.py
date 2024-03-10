@@ -41,9 +41,9 @@ def save_image_to_buffer(image: Image, file_format: str):
     return fp
 
 
-def show_image_download_button(img, file_format='JPEG'):
+def show_image_download_button(img, file_name='image', file_format='JPEG'):
     buffer = save_image_to_buffer(img, file_format)
-    st.download_button('Download image', data=buffer, file_name=f"image.{file_format}")
+    st.download_button('Download image', data=buffer, file_name=f"{file_name}.{file_format}")
 
 
 def show_image_download_link(img, file_format='JPEG'):

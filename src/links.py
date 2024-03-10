@@ -34,6 +34,14 @@ class Link:
         'url': 'https://docs.opencv.org/4.5.2/df/dac/group__photo__render.html#gacb0f7324017df153d7b5d095aed53206',
         'label': 'cv2.stylization()'
     }
+    median_filter = {
+        'url': 'https://docs.opencv.org/4.5.2/d4/d86/group__imgproc__filter.html#ga564869aa33e58769b4469101aac458f9',
+        'label': 'cv2.medianBlur()'
+    }
+    bilateral_filter = {
+        'url': 'https://docs.opencv.org/4.5.2/d4/d86/group__imgproc__filter.html#ga9d7064d478c95d60003cf839430737ed',
+        'label': 'cv2.bilateralFilter()'
+    }
 
     @staticmethod
     def show(link_name):
